@@ -39,7 +39,7 @@ public interface BankingDAO {
     public AccountNote selectAccountNoteById(int transId);
     public Boolean insertIntoAccountNotes(AccountNote note);
     public List<AccountNote> selectAccountNotesByAccNum(int accNum); //order by newest first
-    public List<AccountNote> selectAccountNotesByType(AccountNote.NoteType type); 
+    public List<AccountNote> selectAccountNotesByTags(String [] tags); // searching account notes by 1 or more tags
     public List<AccountNote> selectAccountNotesByAuthor(int author);
     public List<AccountNote> selectAccountNotesByDateRange(LocalDate start, LocalDate end); 
 

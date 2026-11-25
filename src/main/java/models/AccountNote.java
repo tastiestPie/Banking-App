@@ -1,38 +1,47 @@
 package models;
 import java.time.LocalDate;
-
+import java.util.*;
 public class AccountNote {
-    public static enum NoteType {GENERAL, WIRE_TRANSFER, SUSPICIOUS_ACTIVITY, CUSTOMER_CONTACT};
+    private static final Set <String> availableTags = new HashSet<>(List.of(
+        "general", "suspicious-activity", "customer-request", "wire-transfer", "identity-verified",
+        "fraud-review", "account-frozen", "account-unfrozen", "large-deposit", "large-withdrawal", 
+        "customer-contact", "address-change", "complaint", "follow-up-required", "resolved"
+    ));
+
     private int noteId;
     private int accNum;
     private String note;
-    private NoteType type;
+    private String [] tags; //create index for tags field in account notes collection so it become multikey index
     private int transId;
     private LocalDate date;
     private int author;
 
-    public AccountNote(int noteId, int accNum, String note, NoteType type, LocalDate date, int author, int transId){
+    public AccountNote(int noteId, int accNum, String note, String [] tags, LocalDate date, int author, int transId){
         this.noteId = noteId;
         this.accNum = accNum;
         this.note = note;
-        this.type = type;
+        this.tags = tags;
         this.transId = transId;
         this.date = date;
         this.author = author;
     }
 
     //transaction id is optional, so we can have a constructor without it
-    public AccountNote(int accNum, String note, LocalDate date, NoteType type, int author){
-        this(-1, accNum, note, type, date, author, -1);
+    public AccountNote(int noteId, int accNum, String note, String [] tags, LocalDate date, int author){
+        this(noteId, accNum, note, tags, date, author, -1);
     }
 
     //Getters and Setters
     public int getNoteId(){return noteId;}
     public int getAccNum(){return accNum;}
     public String getNote(){return note;}
-    public NoteType getType(){return type;}
+    public String [] getTags(){return tags;}
     public int getTransId(){return transId;}
     public LocalDate getDate(){return date;}
     public int getAuthor(){return author;}
     public void setNote(String note){this.note = note;}
+
+    public boolean addTag(String tag){return availableTags.add(tag);}
+    public boolean deleteTag(String tag){return availableTags.remove(tag);}
+    public String toString(){return note;}
 }
