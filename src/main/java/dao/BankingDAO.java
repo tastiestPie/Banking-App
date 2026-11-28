@@ -6,13 +6,13 @@ import java.time.LocalDate;
 public interface BankingDAO {
     //Employee methods
     public Employee selectEmployeeByName(int empId);
-    public Boolean insertIntoEmployees(Employee emp);
+    public Boolean insertIntoEmployees(Employee emp, String pwd);
     public Boolean updateEmployeeByName(Employee emp);
     public Boolean deleteEmployeeByName(int empId);
 
     //Customer methods
     public Customer selectCustomerById(int custId);
-    public Boolean insertIntoCustomers(Customer cust);
+    public Boolean insertIntoCustomers(Customer cust, String pwd);
     public Boolean updateCustomer(int custId, Customer cust);
     public Boolean deleteCustomerByName(int custId);
     public Boolean freezeCustomerByName(int custId);
