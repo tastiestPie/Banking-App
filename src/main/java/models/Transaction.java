@@ -5,12 +5,12 @@ public class Transaction {
     public static enum TransactionType {WITHDRAWAL, DEPOSIT};
     private int transId;
     private int accNum;
-    private String type;
+    private TransactionType type;
     private LocalDate date;
     private int amount;
     private int resBalance;
 
-    public Transaction(int transId, int accNum, String type, LocalDate date, int amount, int resBalance){
+    public Transaction(int transId, int accNum, TransactionType type, LocalDate date, int amount, int resBalance){
         this.transId = transId;
         this.accNum = accNum;
         this.type = type;
@@ -21,7 +21,7 @@ public class Transaction {
 
     //Getters and Setters
     public int getTransactionId(){return transId;}    
-    public String getTransactionType(){return type;}
+    public TransactionType getTransactionType(){return type;}
     public LocalDate getTransactionDate(){return date;}
     public int getAccountNumber(){return accNum;}
     public int getTransactionAmount(){return amount ;}

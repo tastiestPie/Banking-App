@@ -39,9 +39,13 @@ public class AccountNote {
     public int getTransId(){return transId;}
     public LocalDate getDate(){return date;}
     public int getAuthor(){return author;}
+    public static Set<String> getAvailableTags(){return Collections.unmodifiableSet(availableTags);} // return unmodifiable set
     public void setNote(String note){this.note = note;}
 
-    public boolean addTag(String tag){return availableTags.add(tag);}
+    public boolean addTag(String tag){
+        tag = tag.toLowerCase().trim().replace(' ', '-');
+        return availableTags.add(tag);
+    }
     public boolean deleteTag(String tag){return availableTags.remove(tag);}
     public String toString(){return note;}
 }
